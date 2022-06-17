@@ -33,6 +33,18 @@ app.post("/addBlog", async (req, res) => {
     res.json(blog);
 });
 
+app.delete("/removeBlog/:id", (req, res) => {
+    const id = req.params.id;
+    console.log(id);
+    BlogModel.findByIdAndRemove({_id: id}, (err, blog) => {
+        if (err) {
+            res.json(err);
+        } else {
+            res.json("Blog deleted successfully!");
+        }
+    })    
+})
+
 
 
 app.listen(5000, () => {
